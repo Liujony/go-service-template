@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 769" width="1280" height="769" role="img" aria-label="go-service-template metrics: 82.4 percent coverage, 2.2 ms p50, 21 tests">
+  <defs>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .card { fill: #ffffff; stroke: #d7dde7; stroke-width: 1.2; }
+      .t { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .s { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; fill: #64748b; }
+      .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; letter-spacing: .14em; fill: #8a94a6; }
+      .big { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 84px; font-weight: 700; letter-spacing: -.04em; fill: #0f172a; }
+      .unit { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 24px; font-weight: 600; fill: #475569; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; fill: #94a3b8; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="769"/>
+
+  <text class="label" x="64" y="72">GO-SERVICE-TEMPLATE · MEASURED ON THIS LAPTOP</text>
+  <text class="t" x="64" y="118" style="font-size:30px;font-weight:650;letter-spacing:-.01em">Small surface, tested edges, no mystery in the middle.</text>
+
+  <rect class="card" x="64" y="168" width="368" height="288" rx="16"/>
+  <text class="label" x="92" y="208">TEST COVERAGE</text>
+  <text x="88" y="316"><tspan class="big">82.4</tspan><tspan class="unit" dx="8">%</tspan></text>
+  <text class="s" x="92" y="356">statements, internal/ + pkg/</text>
+  <text class="s" x="92" y="380">main.go excluded (thin wiring)</text>
+  <text class="m" x="92" y="424">make cover</text>
+
+  <rect class="card" x="456" y="168" width="368" height="288" rx="16"/>
+  <text class="label" x="484" y="208">LIST LATENCY</text>
+  <text x="480" y="316"><tspan class="big">2.2</tspan><tspan class="unit" dx="10">ms p50</tspan></text>
+  <text class="s" x="484" y="356">GET /api/v1/items, 500 requests</text>
+  <text class="s" x="484" y="380">p95 6.6 ms · 8 workers · loopback</text>
+  <text class="m" x="484" y="424">make bench → docs/bench-results.json</text>
+
+  <rect class="card" x="848" y="168" width="368" height="288" rx="16"/>
+  <text class="label" x="876" y="208">TESTS</text>
+  <text x="872" y="316"><tspan class="big">21</tspan><tspan class="unit" dx="12">tests</tspan></text>
+  <text class="s" x="876" y="356">service, repository, handler,</text>
+  <text class="s" x="876" y="380">middleware, graceful shutdown</text>
+  <text class="m" x="876" y="424">make test</text>
+
+  <rect class="card" x="64" y="486" width="1152" height="214" rx="16"/>
+  <text class="label" x="92" y="524">WHAT IS BEING MEASURED</text>
+  <text class="s" x="92" y="558">Coverage: go test -coverpkg=./internal/...,./pkg/... — the wiring in main.go is deliberately excluded.</text>
+  <text class="s" x="92" y="586">Latency: real HTTP over loopback with httptest, seeded SQLite, one laptop, one run; re-run for your machine.</text>
+  <text class="s" x="92" y="614">Throughput in the same run: 2,843 requests/second at concurrency 8.</text>
+  <text class="s" x="92" y="660">Reproduce: go run ./cmd/bench -n 500 -c 8 · go test -race ./... · docker build -t go-service-template .</text>
+  <text class="m" x="92" y="684">Numbers from docs/bench-results.json, committed to the repo.</text>
+</svg>

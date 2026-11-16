@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 769" width="1280" height="769" role="img" aria-label="go-service-template architecture: middleware, handler, service, store, and the graceful shutdown lifecycle">
+  <defs>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .box { fill: #ffffff; stroke: #d7dde7; stroke-width: 1.2; }
+      .soft { fill: #fbfcfe; stroke: #e1e7ef; stroke-width: 1.1; }
+      .teal { fill: #effcf9; stroke: #7fd8c6; stroke-width: 1.3; }
+      .t { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; font-size: 15px; }
+      .b { font-weight: 650; }
+      .s { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 11.5px; fill: #64748b; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; fill: #334155; }
+      .label { font-size: 11px; letter-spacing: .12em; fill: #8a94a6; }
+      .arrow { stroke: #94a3b8; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="769"/>
+
+  <text class="label" x="60" y="54">GO-SERVICE-TEMPLATE · ARCHITECTURE</text>
+  <text class="t b" x="60" y="90" style="font-size:26px;letter-spacing:-.01em">A small Go service, built to be handed over.</text>
+  <text class="s" x="60" y="114">One resource, six endpoints, and the production concerns in their own layers — Gin, GORM, SQLite, no magic.</text>
+
+  <!-- request path -->
+  <rect class="box" x="60" y="152" width="220" height="180" rx="12"/>
+  <text class="t b" x="78" y="182">Client</text>
+  <text class="s" x="78" y="208">curl · browser · dashboard</text>
+  <text class="s" x="78" y="228">JSON in, JSON out</text>
+  <text class="s" x="78" y="248">X-Request-ID round-trip</text>
+  <rect class="soft" x="78" y="268" width="184" height="42" rx="7"/>
+  <text class="m" x="90" y="288">GET /api/v1/items</text>
+  <text class="m" x="90" y="304">POST /api/v1/items</text>
+
+  <path class="arrow" d="M 280 242 L 305 242"/>
+
+  <rect class="teal" x="305" y="152" width="220" height="180" rx="12"/>
+  <text class="t b" x="323" y="182">Middleware</text>
+  <text class="s" x="323" y="208">request ID</text>
+  <text class="s" x="323" y="228">one structured log line</text>
+  <text class="s" x="323" y="248">panic → 500, logged</text>
+  <text class="s" x="323" y="268">recovery never leaks</text>
+  <text class="s" x="323" y="288">a stack trace to clients</text>
+
+  <path class="arrow" d="M 525 242 L 550 242"/>
+
+  <rect class="box" x="550" y="152" width="220" height="180" rx="12"/>
+  <text class="t b" x="568" y="182">Handler</text>
+  <text class="s" x="568" y="208">binding + validation</text>
+  <text class="s" x="568" y="228">422 with field errors</text>
+  <text class="s" x="568" y="248">404, 400, 204</text>
+  <text class="s" x="568" y="268">envelope {data, error}</text>
+  <text class="s" x="568" y="288">no business rules</text>
+
+  <path class="arrow" d="M 770 242 L 795 242"/>
+
+  <rect class="box" x="795" y="152" width="200" height="180" rx="12"/>
+  <text class="t b" x="813" y="182">Service</text>
+  <text class="s" x="813" y="208">business rules</text>
+  <text class="s" x="813" y="228">no HTTP, no SQL</text>
+  <text class="s" x="813" y="248">update = merge,</text>
+  <text class="s" x="813" y="268">then revalidate</text>
+  <text class="s" x="813" y="288">pagination clamped</text>
+
+  <path class="arrow" d="M 995 242 L 1020 242"/>
+
+  <rect class="box" x="1020" y="152" width="200" height="180" rx="12"/>
+  <text class="t b" x="1038" y="182">Store</text>
+  <text class="s" x="1038" y="208">GORM + SQLite</text>
+  <text class="s" x="1038" y="228">WAL · busy_timeout 5s</text>
+  <text class="s" x="1038" y="248">AutoMigrate on boot</text>
+  <text class="s" x="1038" y="268">miss → ErrNotFound</text>
+  <text class="s" x="1038" y="288">update ≠ upsert</text>
+
+  <!-- lifecycle -->
+  <text class="label" x="60" y="392">PROCESS LIFECYCLE</text>
+  <rect class="box" x="60" y="408" width="1160" height="104" rx="12"/>
+  <rect class="soft" x="82" y="436" width="150" height="50" rx="8"/>
+  <text class="m" x="100" y="466">start</text>
+  <rect class="soft" x="256" y="436" width="170" height="50" rx="8"/>
+  <text class="m" x="274" y="466">listen :8080</text>
+  <rect class="soft" x="450" y="436" width="150" height="50" rx="8"/>
+  <text class="m" x="468" y="466">serve</text>
+  <rect class="soft" x="624" y="436" width="180" height="50" rx="8"/>
+  <text class="m" x="642" y="466">SIGTERM / SIGINT</text>
+  <rect class="soft" x="828" y="436" width="170" height="50" rx="8"/>
+  <text class="m" x="846" y="466">drain ≤ timeout</text>
+  <rect class="teal" x="1022" y="436" width="176" height="50" rx="8"/>
+  <text class="m" x="1040" y="466">exit 0</text>
+
+  <path class="arrow" d="M 232 461 L 256 461"/>
+  <path class="arrow" d="M 426 461 L 450 461"/>
+  <path class="arrow" d="M 600 461 L 624 461"/>
+  <path class="arrow" d="M 804 461 L 828 461"/>
+  <path class="arrow" d="M 998 461 L 1022 461"/>
+
+  <!-- guarantees -->
+  <text class="label" x="60" y="560">WHAT THE TEMPLATE GUARANTEES</text>
+  <rect class="soft" x="60" y="576" width="368" height="92" rx="10"/>
+  <text class="t b" x="78" y="602">The envelope is the contract</text>
+  <text class="s" x="78" y="624">data on success, error{code,message,fields}</text>
+  <text class="s" x="78" y="642">on failure — no shape surprises.</text>
+
+  <rect class="soft" x="448" y="576" width="368" height="92" rx="10"/>
+  <text class="t b" x="466" y="602">Logs answer "which request?"</text>
+  <text class="s" x="466" y="624">One JSON line per request with the same</text>
+  <text class="s" x="466" y="642">ID that went back in the response header.</text>
+
+  <rect class="soft" x="836" y="576" width="384" height="92" rx="10"/>
+  <text class="t b" x="854" y="602">Shutdown is tested</text>
+  <text class="s" x="854" y="624">A 250 ms handler finishes while the context</text>
+  <text class="s" x="854" y="642">is cancelled; Run returns nil, not a race.</text>
+
+  <text class="m" x="60" y="714">make dev · make test · make bench · docker build -t go-service-template .</text>
+  <text class="s" x="60" y="738">21 tests · 82.4% statement coverage of internal/ and pkg/ · Go 1.22+</text>
+</svg>

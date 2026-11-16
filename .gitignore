@@ -1,0 +1,6 @@
+bin/
+app.db
+app.db-shm
+app.db-wal
+coverage.out
+.DS_Store

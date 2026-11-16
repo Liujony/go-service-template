@@ -1,0 +1,9 @@
+{
+  "runs": 500,
+  "concurrency": 8,
+  "path": "GET /api/v1/items?limit=20",
+  "p50_ms": 2.248,
+  "p95_ms": 6.614,
+  "p99_ms": 9.761,
+  "requests_per_sec": 2843.2037178550654
+}
